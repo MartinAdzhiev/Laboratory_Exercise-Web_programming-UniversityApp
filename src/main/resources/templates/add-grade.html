@@ -1,0 +1,52 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">WEB PROGRAMMING SHOP</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <th:block th:text="${student.getName()} + ' ' + ${student.getSurname()}"></th:block>
+                <form action="/addGrade" method="POST">
+
+
+                    <div class="form-group">
+                        <label>Student</label>
+                        <input type="text"
+                               class="form-control"
+                               name="username"
+                               th:value="(${student} != null ? ${student.getUsername()} : '')"
+                               required
+                               readonly
+                               placeholder="Enter course name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="datetime-local" name="date"/>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Grade</label>
+                        <select name="grade">
+                            <option value='A'>A</option>
+                            <option value='B'>B</option>
+                            <option value='C'>C</option>
+                            <option value='D'>D</option>
+                            <option value='F'>F</option>
+
+                        </select>
+
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/courses">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</th:block>

@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome and Choose a Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>NEW STUDENTS</h1>
+    <ul>
+        <li th:each="student : ${newStudentsList}">
+            <th:block th:text="${student.getName()} + ' ' + ${student.getSurname()}"></th:block>
+        </li>
+    </ul>
+</header>
+<main>
+
+</main>
+</body>
+</html>

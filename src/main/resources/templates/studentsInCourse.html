@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>WP lab - Students in Course</title>
+
+</head>
+<body>
+<header>
+    <h1>Students in Course </h1>
+</header>
+<section>
+    <div>
+        <th:block th:text="${courseName}"></th:block>
+    </div>
+    <ul>
+        <li th:each="student : ${studentsInCourse}" >
+            <th:block th:text="${student.getName()} + ' ' + ${student.getSurname()} "></th:block>
+            <a th:href="@{'/addGradeForm/{username}' (username=${student.getUsername()})}">Add Grade</a>
+        </li>
+    </ul>
+
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Username</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="grade : ${gradesInCourse}">
+            <td th:text="${grade.getStudent().getName()}"></td>
+            <td th:text="${grade.getStudent().getSurname()}"></td>
+            <td th:text="${grade.getStudent().getUsername()}"></td>
+            <td th:text="${grade.getGrade()}"></td>
+            <td th:text="${#temporals.format(grade.getTimestamp(), 'dd-MM-yyyy HH:mm:ss')}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/listCourses">Back</a>
+</section>
+
+</body>
+</html>
