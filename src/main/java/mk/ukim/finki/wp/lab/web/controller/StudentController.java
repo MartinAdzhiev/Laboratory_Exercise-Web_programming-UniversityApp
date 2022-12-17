@@ -5,6 +5,7 @@ import mk.ukim.finki.wp.lab.model.Student;
 import mk.ukim.finki.wp.lab.service.CourseService;
 import mk.ukim.finki.wp.lab.service.StudentService;
 import mk.ukim.finki.wp.lab.service.implementation.GradeServiceImplementation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class StudentController {
     }
 
     @GetMapping("/createStudent")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String CreateStudentPage(Model model) {
         model.addAttribute("bodyContent", "createStudent");
 
