@@ -36,8 +36,9 @@ public class GradeController {
     public String ShowForm(@PathVariable String username, Model model) {
         Student s = this.studentService.searchByNameOrSurname(username).get(0);
         model.addAttribute("student", s);
+        model.addAttribute("bodyContent", "add-grade");
 
-        return "add-grade";
+        return "master-template";
     }
 
     @PostMapping("/addGrade")

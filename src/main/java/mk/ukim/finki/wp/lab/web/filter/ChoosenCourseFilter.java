@@ -1,5 +1,7 @@
 package mk.ukim.finki.wp.lab.web.filter;
 
+import org.springframework.context.annotation.Profile;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter
+@Profile("servlet")
 public class ChoosenCourseFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -17,12 +20,12 @@ public class ChoosenCourseFilter implements Filter {
        // System.out.println(courseId);
 
         String path = request.getServletPath();
-//
+
 //        if (!"/courses".equals(path) && !path.equals("/h2")) {
 //            response.sendRedirect("/courses");
 //        } else {
-            filterChain.doFilter(servletRequest, servletResponse);
-        //}
+//            filterChain.doFilter(servletRequest, servletResponse);
+//        }
     }
 
     @Override

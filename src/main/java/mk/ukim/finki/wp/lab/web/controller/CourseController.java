@@ -26,7 +26,8 @@ public class CourseController {
     @GetMapping
     public String getCoursesPage(@RequestParam(required = false) String error, Model model) {
         model.addAttribute("coursesList", this.courseService.listAll());
-        return "listCourses";
+        model.addAttribute("bodyContent", "listCourses");
+        return "master-template";
     }
 
     @PostMapping
@@ -51,7 +52,8 @@ public class CourseController {
     public String AddCoursePage(Model model) {
         List<Teacher> teacherList = this.teacherService.findAll();
         model.addAttribute("teachers", teacherList);
-        return "add-course";
+        model.addAttribute("bodyContent", "add-course");
+        return "master-template";
     }
 
     @GetMapping("/edit/{id}")
@@ -61,7 +63,8 @@ public class CourseController {
             List<Teacher> teacherList = this.teacherService.findAll();
             model.addAttribute("course", course);
             model.addAttribute("teachers", teacherList);
-            return "add-course";
+            model.addAttribute("bodyContent", "add-course");
+            return "master-template";
         }
         return "redirect:/courses";
     }

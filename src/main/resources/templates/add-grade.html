@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-5">
                 <th:block th:text="${student.getName()} + ' ' + ${student.getSurname()}"></th:block>
-                <form action="/addGrade" method="POST">
+                <form th:action="@{/addGrade}" method="POST">
 
 
                     <div class="form-group">
