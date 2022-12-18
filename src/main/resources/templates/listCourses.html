@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="course : ${coursesList}">
+        <tr th:each="course : ${coursesList}" class="course">
             <td th:text="${course.getCourseId()}"></td>
             <td th:text="${course.getName()}  + ' ' + ${course.getHowManyTimes()}"></td>
             <td th:text="${course.getDescrpition()}"></td>
@@ -37,14 +37,15 @@
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:method="DELETE" th:action="@{'courses/delete/{id}' (id=${course.getCourseId()})}">
                     <button type="submit"
-                            class="btn btn-sm btn-danger delete-product">
+                            class="btn btn-sm btn-danger delete-course">
                         <i class="fa fa-trash">Delete</i>
                     </button>
                 </form>
                     </th:block>
 
                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                <a th:href="@{'/courses/edit/{id}' (id=${course.getCourseId()})}">Edit</a>
+                <a th:href="@{'/courses/edit/{id}' (id=${course.getCourseId()})}"
+                class="edit-course">Edit</a>
                 </th:block>
             </td>
         </tr>
@@ -52,7 +53,7 @@
     </table>
    <div>
        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-       <a href="/courses/add-course">Add new course</a>
+       <a href="/courses/add-course" class="add-course">Add new course</a>
        </th:block>
    </div>
 </header>
