@@ -33,4 +33,8 @@ public class Teacher {
 //        this.name = name;
 //        this.surname = surname;
     }
+
+    public Teacher(TeacherFullname teacherFullname) {
+        this.teacherFullname = teacherFullname;
+    }
 }
