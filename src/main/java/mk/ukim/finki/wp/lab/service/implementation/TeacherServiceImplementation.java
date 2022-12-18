@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.lab.service.implementation;
 
+import mk.ukim.finki.wp.lab.converter.TeacherFullname;
 import mk.ukim.finki.wp.lab.model.Teacher;
 import mk.ukim.finki.wp.lab.model.exceptions.TeacherNotFoundException;
 import mk.ukim.finki.wp.lab.repository.impl.InMemoryTeacherRepository;
@@ -21,6 +22,12 @@ public class TeacherServiceImplementation implements TeacherService {
     @Override
     public Teacher findById(Long id) {
         return teacherRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public Teacher save(TeacherFullname teacherFullname) {
+        Teacher t = new Teacher(teacherFullname);
+        return teacherRepository.save(t);
     }
 
     @Override
