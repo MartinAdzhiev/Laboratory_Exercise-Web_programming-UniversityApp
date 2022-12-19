@@ -73,7 +73,7 @@ public class CourseServiceImplementation implements CourseService {
 
     @Override
     public Course findById(Long id) {
-       return courseRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return courseRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

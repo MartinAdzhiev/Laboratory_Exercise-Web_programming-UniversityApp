@@ -17,7 +17,7 @@ public class ChoosenCourseFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String courseId = (String) request.getSession().getAttribute("courseId");
-       // System.out.println(courseId);
+        // System.out.println(courseId);
 
         String path = request.getServletPath();
 

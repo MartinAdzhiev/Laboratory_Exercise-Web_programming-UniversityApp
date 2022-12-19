@@ -17,7 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //private final CustomUsernamePasswordAuthenticationProvider authenticationProvider;
 
     public WebSecurityConfig(PasswordEncoder passwordEncoder)
-                            // CustomUsernamePasswordAuthenticationProvider authenticationProvider)
+    // CustomUsernamePasswordAuthenticationProvider authenticationProvider)
     {
         this.passwordEncoder = passwordEncoder;
         //this.authenticationProvider = authenticationProvider;

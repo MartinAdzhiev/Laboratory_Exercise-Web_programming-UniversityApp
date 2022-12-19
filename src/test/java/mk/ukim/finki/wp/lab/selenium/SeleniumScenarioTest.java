@@ -70,17 +70,17 @@ public class SeleniumScenarioTest {
     @Test
     public void testScenario() throws Exception {
         CoursesPage coursesPage = CoursesPage.to(this.driver);
-        coursesPage.assertElemts(0, 0, 0,  0);
+        coursesPage.assertElemts(0, 0, 0, 0);
         LoginPage loginPage = LoginPage.openLogin(this.driver);
 
         coursesPage = LoginPage.doLogin(this.driver, loginPage, admin, admin);
-        coursesPage.assertElemts(0, 0, 0,  1);
+        coursesPage.assertElemts(0, 0, 0, 1);
 
         coursesPage = AddCourse.addCourse(this.driver, "Operating systems", "2year", t1.getTeacherFullname().toString());
-        coursesPage.assertElemts(1, 1, 1,  1);
+        coursesPage.assertElemts(1, 1, 1, 1);
 
         coursesPage = AddCourse.addCourse(this.driver, "Web programming", "3year", t2.getTeacherFullname().toString());
-        coursesPage.assertElemts(2, 2, 2,  1);
+        coursesPage.assertElemts(2, 2, 2, 1);
 
         coursesPage.getDeleteButtons().get(1).click();
         coursesPage.assertElemts(1, 1, 1, 1);

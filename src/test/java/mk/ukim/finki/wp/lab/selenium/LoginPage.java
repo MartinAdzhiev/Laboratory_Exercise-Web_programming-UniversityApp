@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends AbstractPage{
+public class LoginPage extends AbstractPage {
 
     private WebElement username;
 
@@ -35,8 +35,6 @@ public class LoginPage extends AbstractPage{
         get(driver, "/logout");
         return PageFactory.initElements(driver, LoginPage.class);
     }
-
-
 
 
 }

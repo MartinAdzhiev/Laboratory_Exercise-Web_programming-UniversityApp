@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class AddCourse extends AbstractPage{
+public class AddCourse extends AbstractPage {
 
     private WebElement name;
     private WebElement description;
@@ -28,7 +28,6 @@ public class AddCourse extends AbstractPage{
         addCourse.submit.click();
         return PageFactory.initElements(driver, CoursesPage.class);
     }
-
 
 
 }

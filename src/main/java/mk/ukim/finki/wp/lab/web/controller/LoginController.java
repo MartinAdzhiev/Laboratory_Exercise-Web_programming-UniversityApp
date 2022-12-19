@@ -14,7 +14,7 @@ public class LoginController {
 
     @GetMapping("login")
     public String getLoginPage(Model model) {
-        model.addAttribute("bodyContent","login");
+        model.addAttribute("bodyContent", "login");
         return "master-template";
     }
 
