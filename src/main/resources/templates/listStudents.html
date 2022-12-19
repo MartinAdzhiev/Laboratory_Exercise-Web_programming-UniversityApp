@@ -34,18 +34,27 @@
         ul {
             list-style: none;
         }
+
+        .button {
+            background-color: lightgreen;
+            color: black;
+            padding: 5px;
+            text-decoration: none;
+            border: 1px solid black;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
 <header>
-    <h1>Student Enrollment - Select the Student </h1>
 </header>
 <section>
-    <h2>Select the student to enroll:</h2>
+    <h3>Select the student to enroll:</h3>
     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-    <a href='/createStudent' type='button'>Create New Student</a> <br/> <br/>
+    <a href='/createStudent' type='button' class="button">Create New Student</a> <br/> <br/>
     </th:block>
-    <a href='/listNewStudents' type='button'>VIEW NEW STUDENTS</a> <br/> <br/>
+    <a href='/listNewStudents' type='button' class="button">VIEW NEW STUDENTS</a> <br/> <br/>
+    <a href='/StudentEnrollmentSummary' type='button' class="button">View Students in course</a> <br/> <br/>
     <form th:method="POST" th:action="@{/addStudent}">
         <ul>
             <li th:each="student : ${studentsList}">
@@ -59,7 +68,6 @@
         <input type='submit' value='Submit'/>
         </th:block>
     </form>
-    <a href='/StudentEnrollmentSummary' type='button'>View Students in course</a> <br/> <br/>
 </section>
 <aside>
     <table>

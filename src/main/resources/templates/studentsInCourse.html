@@ -4,6 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>WP lab - Students in Course</title>
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            padding: 3px 2px;
+        }
+    </style>
 
 </head>
 <body>
@@ -18,7 +24,7 @@
         <li th:each="student : ${studentsInCourse}" >
             <th:block th:text="${student.getName()} + ' ' + ${student.getSurname()} "></th:block>
             <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{'/addGradeForm/{username}' (username=${student.getUsername()})}">Add Grade</a>
+            <a th:href="@{'/addGradeForm/{username}' (username=${student.getUsername()})}" class="gradeButton">Add Grade</a>
             </th:block>
         </li>
     </ul>

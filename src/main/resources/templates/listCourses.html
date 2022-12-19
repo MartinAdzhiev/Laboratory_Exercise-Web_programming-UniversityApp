@@ -9,9 +9,39 @@
             width: 800px;
             margin: auto;
         }
+        table, td, th {
+            border: 1px solid black;
+            padding: 3px 2px;
+        }
 
         ul {
             list-style: none;
+        }
+
+        .login {
+            display: inline-block;
+        }
+
+        .add-course {
+            background-color: white;
+            color: black;
+            padding: 5px;
+            text-decoration: none;
+            border: 1px solid black;
+            margin-top: 50px;
+        }
+        .add-course:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .edit-course {
+            background-color: lightblue;
+            color: black;
+            padding: 5px;
+            text-decoration: none;
+            border: 1px solid black;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -42,7 +72,9 @@
                     </button>
                 </form>
                     </th:block>
+            </td>
 
+            <td>
                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                 <a th:href="@{'/courses/edit/{id}' (id=${course.getCourseId()})}"
                 class="edit-course">Edit</a>
@@ -74,6 +106,7 @@
         <br/>
         <input type='submit' value='Submit'/>
     </form>
+
 </main>
 </body>
 </html>
