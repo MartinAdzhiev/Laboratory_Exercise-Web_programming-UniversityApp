@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <form th:action="@{/courses/add}"method="POST">
+                <form th:action="@{/courses/add}" method="POST">
                     <input id="id" type="hidden" name="id"
                            th:value="(${course} != null ? ${course.getCourseId()} : '')">
                     <div class="form-group">

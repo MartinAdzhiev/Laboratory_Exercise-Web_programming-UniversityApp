@@ -1,113 +1,114 @@
 <th:block xmlns:th="http://www.thymeleaf.org">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome and Choose a Course</title>
-    <style type="text/css">
-        body {
-            width: 800px;
-            margin: auto;
-        }
-        table, td, th {
-            border: 1px solid black;
-            padding: 3px 2px;
-        }
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome and Choose a Course</title>
+        <style type="text/css">
+            body {
+                width: 800px;
+                margin: auto;
+            }
 
-        ul {
-            list-style: none;
-        }
+            table, td, th {
+                border: 1px solid black;
+                padding: 3px 2px;
+            }
 
-        .login {
-            display: inline-block;
-        }
+            ul {
+                list-style: none;
+            }
 
-        .add-course {
-            background-color: white;
-            color: black;
-            padding: 5px;
-            text-decoration: none;
-            border: 1px solid black;
-            margin-top: 50px;
-        }
-        .add-course:hover {
-            background-color: black;
-            color: white;
-        }
+            .login {
+                display: inline-block;
+            }
 
-        .edit-course {
-            background-color: lightblue;
-            color: black;
-            padding: 5px;
-            text-decoration: none;
-            border: 1px solid black;
-            margin-top: 50px;
-        }
-    </style>
-</head>
-<body>
-<header>
-    <h1>Courses List</h1>
-    <table>
-        <thead>
-        <tr>
-            <th scope="col">Course ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Teacher ID</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="course : ${coursesList}" class="course">
-            <td th:text="${course.getCourseId()}"></td>
-            <td th:text="${course.getName()}  + ' ' + ${course.getHowManyTimes()}"></td>
-            <td th:text="${course.getDescrpition()}"></td>
-            <td th:text="${course.getTeacher().getId()}"></td>
-            <td>
+            .add-course {
+                background-color: lightblue;
+                color: black;
+                padding: 5px;
+                text-decoration: none;
+                border: 1px solid black;
+                margin-top: 50px;
+            }
+
+            .add-course:hover {
+                background-color: black;
+                color: white;
+            }
+
+            .edit-course {
+                background-color: lightblue;
+                color: black;
+                padding: 5px;
+                text-decoration: none;
+                border: 1px solid black;
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+    <header>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Course ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Teacher ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="course : ${coursesList}" class="course">
+                <td th:text="${course.getCourseId()}"></td>
+                <td th:text="${course.getName()}  + ' ' + ${course.getHowManyTimes()}"></td>
+                <td th:text="${course.getDescrpition()}"></td>
+                <td th:text="${course.getTeacher().getId()}"></td>
+                <td>
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                <form th:method="DELETE" th:action="@{'courses/delete/{id}' (id=${course.getCourseId()})}">
-                    <button type="submit"
-                            class="btn btn-sm btn-danger delete-course">
-                        <i class="fa fa-trash">Delete</i>
-                    </button>
-                </form>
+                        <form th:method="DELETE" th:action="@{'courses/delete/{id}' (id=${course.getCourseId()})}">
+                            <button type="submit"
+                                    class="btn btn-sm btn-danger delete-course">
+                                <i class="fa fa-trash">Delete</i>
+                            </button>
+                        </form>
                     </th:block>
-            </td>
+                </td>
 
-            <td>
-                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                <a th:href="@{'/courses/edit/{id}' (id=${course.getCourseId()})}"
-                class="edit-course">Edit</a>
-                </th:block>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-   <div>
-       <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-       <a href="/courses/add-course" class="add-course">Add new course</a>
-       </th:block>
-   </div>
-</header>
-<main>
-
-
-    <h2>Choose course:</h2>
-    <form th:method="POST" th:action="@{/courses}">
-        <ul>
-            <li th:each="course : ${coursesList}">
-                <input type="radio" name="courseId" th:value="${course.getCourseId()}">
-                <th:block th:text="${course.getName()}"></th:block>
-                <br/>
-            </li>
-        </ul>
+                <td>
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a th:href="@{'/courses/edit/{id}' (id=${course.getCourseId()})}"
+                           class="edit-course">Edit</a>
+                    </th:block>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <a href="/courses/add-course" class="add-course">Add new course</a>
+            </th:block>
+        </div>
+    </header>
+    <main>
 
 
-        <br/>
-        <input type='submit' value='Submit'/>
-    </form>
+        <h5>Choose course:</h5>
+        <form th:method="POST" th:action="@{/courses}">
+            <ul>
+                <li th:each="course : ${coursesList}">
+                    <input type="radio" name="courseId" th:value="${course.getCourseId()}">
+                    <th:block th:text="${course.getName()}"></th:block>
+                    <br/>
+                </li>
+            </ul>
 
-</main>
-</body>
-</html>
+
+            <br/>
+            <input type='submit' value='Submit'/>
+        </form>
+
+    </main>
+    </body>
+    </html>
 </th:block>
