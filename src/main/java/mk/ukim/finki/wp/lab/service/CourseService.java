@@ -19,6 +19,8 @@ public interface CourseService {
 
     Course save(String name, String description, Long teacherId);
 
+    Course edit(Long id, String name, String description, Long teacherId);
+
     void deleteById(Long id);
 
     Course findById(Long id);

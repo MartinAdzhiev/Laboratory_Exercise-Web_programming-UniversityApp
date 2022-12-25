@@ -72,6 +72,27 @@ public class CourseServiceImplementation implements CourseService {
     }
 
     @Override
+    @Transactional
+    public Course edit(Long id, String name, String description, Long teacherId) {
+
+        Course course = this.courseRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        Teacher t = teacherRepository.findById(teacherId).orElseThrow(IllegalArgumentException::new);
+        //courseRepository.findAll().removeIf(course -> course.getName().equals(name));
+        if (t == null) {
+            throw new TeacherNotFoundException(teacherId);
+        }
+
+        course.setName(name);
+        course.setDescrpition(description);
+        course.setTeacher(t);
+
+        Course c = new Course(name, description, t);
+        courseRepository.save(course);
+        return c;
+        //return courseRepository.save(name, description, t);
+    }
+
+    @Override
     public Course findById(Long id) {
         return courseRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }

@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+Fimport java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/courses")
@@ -26,7 +28,11 @@ public class CourseController {
 
     @GetMapping
     public String getCoursesPage(@RequestParam(required = false) String error, Model model) {
-        model.addAttribute("coursesList", this.courseService.listAll());
+        List<Course> courses = this.courseService.listAll().stream()
+                .sorted(Comparator.comparing(Course::getName))
+                .collect(Collectors.toList());
+
+        model.addAttribute("coursesList", courses);
         model.addAttribute("bodyContent", "listCourses");
         return "master-template";
     }
@@ -74,12 +80,19 @@ public class CourseController {
     }
 
     @PostMapping("/add")
-    public String saveCourse(@RequestParam String name,
-                             @RequestParam String description,
-                             @RequestParam Long teacher) {
+    public String saveCourse(
+            @RequestParam(required = false) Long id,
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam Long teacher) {
         String namee = name;
         System.out.println(namee);
-        this.courseService.save(name, description, teacher);
+
+        if (id != null) {
+            this.courseService.edit(id, name, description, teacher);
+        } else {
+            this.courseService.save(name, description, teacher);
+        }
         return "redirect:/courses";
     }
 }
